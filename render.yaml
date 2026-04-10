@@ -10,15 +10,23 @@ services:
     runtime: docker
     plan: free
     envVars:
-      - key: DATABASE_URL
+      - key: DB_HOST
         fromDatabase:
           name: logindb
-          property: connectionString
-      - key: DATABASE_USERNAME
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: logindb
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: logindb
+          property: database
+      - key: DB_USERNAME
         fromDatabase:
           name: logindb
           property: user
-      - key: DATABASE_PASSWORD
+      - key: DB_PASSWORD
         fromDatabase:
           name: logindb
           property: password
