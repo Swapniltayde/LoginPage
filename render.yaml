@@ -1,0 +1,24 @@
+databases:
+  - name: logindb
+    databaseName: logindb
+    user: postgres_user
+    plan: free
+
+services:
+  - type: web
+    name: spring-boot-login
+    runtime: docker
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: logindb
+          property: connectionString
+      - key: DATABASE_USERNAME
+        fromDatabase:
+          name: logindb
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: logindb
+          property: password
